@@ -17,9 +17,9 @@ function Home() {
               <div>建立镜头操控,三维坐标系和地板</div>
           </Link>
 
-          <Link to="/demo2" target='div' className="demoItem">
-              <img src="static/preview/demo2.png"></img>
-              <div>建立镜头操控,三维坐标系和地板</div>
+          <Link to="/demo3" target='div' className="demoItem">
+              <img src="static/preview/demo3.png"></img>
+              <div>载入glb模型</div>
           </Link>
           
         </div>
