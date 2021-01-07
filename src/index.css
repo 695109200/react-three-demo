@@ -13,16 +13,18 @@ a {
     color: #000;
   }
 .demoBox{
-    width: 60vw;
+    width: 50vw;
     margin: 0 auto;
     height: 300px;
     text-align: center;
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 .demoItem {
     width: 300px;
     position: relative;
+    margin-top: 20px;
     display:block;
     transition: .3s;
     height: 300px;

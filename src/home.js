@@ -21,6 +21,16 @@ function Home() {
               <img src="static/preview/demo3.png"></img>
               <div>载入glb模型</div>
           </Link>
+
+          <Link to="/demo4" target='div' className="demoItem">
+              <img src="static/preview/demo4.png"></img>
+              <div>获取所选中的物体</div>
+          </Link>
+
+          <Link to="/demo5" target='div' className="demoItem">
+              <img src="static/preview/demo5.png"></img>
+              <div>构建动画系统</div>
+          </Link>
           
         </div>
     </div>
