@@ -11,6 +11,8 @@ function Demo2() {
 
     const [axisHelper, setAxisHelper] = useState(new Three.AxisHelper(30, 30))      //三维坐标系
     const [gridHelper, setGridHelper] = useState(new Three.GridHelper(70, 70))      //地板辅助线
+    camera.position.set(10, 10, 0)  //设置镜头位置
+    
     const [controls, setControls] = useState(new Orbitcontrols(camera, render.domElement))
 
     const geometry = new Three.BoxGeometry(1, 1, 1);    //定义geometry(一个几何体)   BoxGeometry(立方几何体)
@@ -23,7 +25,6 @@ function Demo2() {
         render.setClearColor(0xFFFFFF, 1.0);    //设置渲染器的背景颜色及其透明度
         scene.add(axisHelper)   //场景添加三维坐标系
         scene.add(gridHelper)   //场景添加地板
-        camera.position.set(10, 10, 0)  //设置镜头位置
         add()
     }
 

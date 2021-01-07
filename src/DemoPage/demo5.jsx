@@ -3,12 +3,17 @@ import * as Three from 'three';
 import React, { useState, useEffect } from 'react'
 import Orbitcontrols from 'three-orbitcontrols';
 
+import TWEEN from "@tweenjs/tween.js";
+
 function Demo2() {
     const [camera] = useState(new Three.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000))    //摄像机
     camera.position.set(-48.29395512934191, 22.285677525066234, -0.23486243146612543);
     const [scene] = useState(new Three.Scene())   //场景
     const [render] = useState(new Three.WebGLRenderer({ antialias: true }))  //渲染器
     const [controls] = useState(new Orbitcontrols(camera, render.domElement))
+    
+
+
 
     //添加东西进去
     function add() {
@@ -19,9 +24,16 @@ function Demo2() {
         scene.children[1].position.set(0, 10, -10)
     }
 
+    
+    function run(){
+        var tween = new TWEEN.Tween(scene.children[0].position).to({y:30}, 500).repeat(Infinity).yoyo(true).start()
+        var tween2 = new TWEEN.Tween(scene.children[1].position).to({z:30}, 500).repeat(Infinity).yoyo(true).start()
+    
+    }
     //每秒渲染
     function animation() {
         render.render(scene, camera);    //每次渲染器把场景和摄像机一起渲染
+        TWEEN.update();
         requestAnimationFrame(animation);//采用系统时间间隔,保持最佳绘制效率进行渲染
     }
 
@@ -33,6 +45,7 @@ function Demo2() {
         render.setClearColor(0xFFFFFF, 1.0);    //设置渲染器的背景颜色及其透明度
         add()
         animation()
+        run()
     })
     return (
         <div id='canvas-frame'></div>
