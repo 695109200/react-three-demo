@@ -29,9 +29,13 @@ function Home() {
 
           <Link to="/demo5" target='div' className="demoItem">
               <img src="static/preview/demo5.png"></img>
-              <div>Tween构建动画</div>
+              <div>Tween构建位移动画</div>
           </Link>
-          
+
+          <Link to="/demo6" target='div' className="demoItem">
+              <img src="static/preview/demo6.png"></img>
+              <div>执行导入模型里的动画</div>
+          </Link>
         </div>
     </div>
   );
