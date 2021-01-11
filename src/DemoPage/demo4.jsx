@@ -13,11 +13,9 @@ function Demo4() {
     const [loader, setLoader] = useState( new GLTFLoader())                 //gltf加载器
     const [light, setLight] = useState( new Three.AmbientLight(0xffffff))   //全局光
     const [light2, setLight2] = useState(new Three.SpotLight(0xffffff))     //跟随光
-    
     const [controls] = useState(new Orbitcontrols(camera, render.domElement))
     const [raycaster] = useState(new Three.Raycaster())
     const [mouse] = useState(new Three.Vector2())
-
 
     window.addEventListener('mousemove', onMouseMove, false);
     window.addEventListener('mousedown', onMouseDown, false);
@@ -46,9 +44,7 @@ function Demo4() {
     }
     //添加东西进去
     function add() {
-        scene.add(new Three.GridHelper(70, 70))
-        scene.add(light2)
-        scene.add(light)
+        scene.add(new Three.GridHelper(70, 70),light2,light)
     }
 
     //每秒渲染

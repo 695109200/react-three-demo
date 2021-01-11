@@ -10,39 +10,36 @@ function Demo6() {
     const [scene] = useState(new Three.Scene())   //场景
     const [render] = useState(new Three.WebGLRenderer({ antialias: true }))  //渲染器
     const [controls] = useState(new Orbitcontrols(camera, render.domElement))
-    const [loader, setLoader] = useState( new GLTFLoader())                 //gltf加载器
-    const [light, setLight] = useState( new Three.AmbientLight(0xffffff))   //全局光
-    const [light2, setLight2] = useState(new Three.SpotLight(0xffffff))     //跟随光
-    const [gridHelper, setGridHelper] = useState(new Three.GridHelper(70, 70))      //地板辅助线
-    
+    const [loader] = useState(new GLTFLoader())                 //gltf加载器
+    const [light] = useState(new Three.AmbientLight(0xffffff))   //全局光
+    const [light2] = useState(new Three.SpotLight(0xffffff))     //跟随光
+    const [gridHelper] = useState(new Three.GridHelper(70, 70))      //地板辅助线
     var mixer;
-    var clock = new Three.Clock();
+
     //添加东西进去
     function add() {
-        scene.add(new Three.GridHelper(70, 70))
-        scene.add(light)
-        scene.add(gridHelper)   //场景添加地板
-        scene.add(light2)
+        scene.add(light, gridHelper, light2)
     }
-    function load(){
-        //主要加载函数
-        loader.load("Bee.glb", (object) => {
-            console.log(object);
-            scene.add(object.scene);    //加载成功添加进场景
-            mixer = new Three.AnimationMixer( object )
-            for(var i = 0 ; i < object.animations.length; i++){
-                var action = mixer.clipAction( object.animations[ i ] );
-                action.stop();
-            }
-            mixer.clipAction( object.animations[ 0 ] ).play();
+
+    //主要加载函数
+    function load() {
+        loader.load("Bee.glb", (glt) => {
+            scene.add(glt.scene);                        //加载成功添加进场景
+            mixer = new Three.AnimationMixer(scene.children[3])   //把刚刚添加进场景的模型添加进动画的播放器
+            glt.animations.forEach((clip) => {             //循环导入模型里自带的动画数组，轮流播放
+                mixer.clipAction(clip).play();                    //clipAction: 获取播放器对应的动画
+            });
         });
     }
+
     //每秒渲染
     function animation() {
         render.render(scene, camera);    //每次渲染器把场景和摄像机一起渲染
+        if (mixer) mixer.update(0.03)          //刷新动画渲染速度
         requestAnimationFrame(animation);//采用系统时间间隔,保持最佳绘制效率进行渲染
     }
-
+    
+    //初始化
     useEffect(() => {
         render.setSize(window.innerWidth, window.innerHeight)
         render.domElement.removeAttribute("tabindex")   //清除点击canvas的黑边

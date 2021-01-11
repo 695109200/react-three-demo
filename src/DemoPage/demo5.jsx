@@ -10,26 +10,19 @@ function Demo5() {
     const [scene] = useState(new Three.Scene())   //场景
     const [render] = useState(new Three.WebGLRenderer({ antialias: true }))  //渲染器
     const [controls] = useState(new Orbitcontrols(camera, render.domElement))
-    const [loader, setLoader] = useState( new GLTFLoader())                 //gltf加载器
-    const [light, setLight] = useState( new Three.AmbientLight(0xffffff))   //全局光
-    const [light2, setLight2] = useState(new Three.SpotLight(0xffffff))     //跟随光
-    const [gridHelper, setGridHelper] = useState(new Three.GridHelper(70, 70))      //地板辅助线
-    
-    var mixer;
-    var clock = new Three.Clock();
+    const [loader] = useState( new GLTFLoader())                 //gltf加载器
+    const [light] = useState( new Three.AmbientLight(0xffffff))   //全局光
+    const [light2] = useState(new Three.SpotLight(0xffffff))     //跟随光
+    const [gridHelper] = useState(new Three.GridHelper(70, 70))      //地板辅助线
     //添加东西进去
     function add() {
-        scene.add(new Three.GridHelper(70, 70))
-        scene.add(light)
-        scene.add(gridHelper)   //场景添加地板
-        scene.add(light2)
+        scene.add(light,gridHelper,light2)
     }
     function load(){
         //主要加载函数
         loader.load("Bee.glb", (object) => {
             scene.add(object.scene);    //加载成功添加进场景
-            console.log(scene);
-            var tween = new TWEEN.Tween(scene.children[4].position).to({y:20}).repeat(Infinity).yoyo(true).start()
+            var tween = new TWEEN.Tween(scene.children[3].position).to({y:20}).repeat(Infinity).yoyo(true).start()
         });
     }
     //每秒渲染
