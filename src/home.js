@@ -43,7 +43,7 @@ function Home() {
           </Link>
 
           <Link to="/demo8" target='div' className="demoItem">
-              <img src="static/preview/demo6.png"></img>
+              <img src="static/preview/demo8.png"></img>
               <div>拖动模型</div>
           </Link>
       
