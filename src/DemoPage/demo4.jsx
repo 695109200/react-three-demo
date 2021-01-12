@@ -3,7 +3,6 @@ import * as Three from 'three';
 import React, { useState, useEffect, refs } from 'react'
 import Orbitcontrols from 'three-orbitcontrols';
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-
 function Demo4() {
 
     const [camera] = useState(new Three.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000))    //摄像机
@@ -16,7 +15,8 @@ function Demo4() {
     const [controls] = useState(new Orbitcontrols(camera, render.domElement))
     const [raycaster] = useState(new Three.Raycaster())
     const [mouse] = useState(new Three.Vector2())
-
+    
+    let intersects;
     window.addEventListener('mousemove', onMouseMove, false);
     window.addEventListener('mousedown', onMouseDown, false);
 
@@ -27,13 +27,10 @@ function Demo4() {
 
     function onMouseDown(event) {
         raycaster.setFromCamera(mouse, camera);
-        const intersects = raycaster.intersectObjects(scene.children,true);
-        if (intersects.length > 0 && intersects[ 0 ].object.type !== 'GridHelper') {
-            intersects[ 0 ].object.material.color.set( 0xff0000 );
-            setTimeout(() => {
-                camera.up.set(0, 1, 0)
-                // intersects[ 0 ].object.material.color.set(color );
-            }, 1200)
+        intersects = raycaster.intersectObjects(scene.children,true);   //intersects = 射线经过的物体数组
+
+        if (intersects.length > 0 && intersects[ 0 ].object.type !== 'GridHelper') {    //判断射线经过的物体数组的长度以及做筛选
+            intersects[ 0 ].object.material.color.set( 0xff0000 );                      //数组第一个就是获取到的对象
         }
     }
 

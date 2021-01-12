@@ -2,7 +2,7 @@ body{
     margin: 0;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 h1{
     font-size: 32px;
@@ -11,6 +11,11 @@ h1{
 a {
     text-decoration: none;
     color: #000;
+  }
+  #canvas-frame{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
   }
 .demoBox{
     width: 50vw;
@@ -22,7 +27,7 @@ a {
     justify-content: space-between;
 }
 .demoItem {
-    width: 300px;
+    width: 32%;
     position: relative;
     margin-top: 20px;
     display:block;

@@ -36,6 +36,17 @@ function Home() {
               <img src="static/preview/demo6.png"></img>
               <div>执行导入模型里的动画</div>
           </Link>
+
+          <Link to="/demo7" target='div' className="demoItem">
+              <img src="static/preview/demo6.png"></img>
+              <div>three里的环境光</div>
+          </Link>
+
+          <Link to="/demo8" target='div' className="demoItem">
+              <img src="static/preview/demo6.png"></img>
+              <div>拖动模型</div>
+          </Link>
+      
         </div>
     </div>
   );
