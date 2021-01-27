@@ -46,7 +46,15 @@ function Home() {
               <img src="static/preview/demo8.png"></img>
               <div>拖动模型</div>
           </Link>
-      
+
+          <Link to="/demo9" target='div' className="demoItem">
+              <img src="static/preview/demo9.png"></img>
+              <div>点击画线测距离</div>
+          </Link>
+          <Link to="/demo10" target='div' className="demoItem">
+              <img src="static/preview/demo10.png"></img>
+              <div>天空盒子</div>
+          </Link>
         </div>
     </div>
   );

@@ -47,7 +47,6 @@ function Demo7() {
     function initPlan() {
         plane.rotation.x = -0.5 * Math.PI
         plane.receiveShadow = true;
-        plane.name = 'plane'
     }
     //初始化立方体
     function initCube() {
