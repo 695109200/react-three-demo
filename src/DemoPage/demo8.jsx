@@ -32,13 +32,13 @@ function Demo8() {
             scene.children[4].scale.set(40, 40, 40)
             light2.position.set(0, 10, 0)
         });
-       
+
         //增加拖动控制器
         dragControls = new DragControls(scene.children, camera, render.domElement)
 
         //鼠标滑过选中的物体，并进行过滤
         dragControls.addEventListener('hoveron', function (event) {
-            if (event.object.type == 'Mesh' ) {
+            if (event.object.type == 'Mesh') {
                 transformControls.attach(event.object);
                 transformControls.setSize(0.4);
             }
@@ -53,7 +53,7 @@ function Demo8() {
 
         //鼠标按下进行判断是否锁住镜头控制器
         dragControls.addEventListener('dragstart', function (event) {
-            if( event.object.type == 'Mesh' || event.object.type == 'GridHelper'  ){
+            if (event.object.type == 'Mesh' || event.object.type == 'GridHelper') {
                 controls.enabled = false;
             }
         });

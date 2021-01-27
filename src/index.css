@@ -3,7 +3,6 @@ body{
     width: 100vw;
     height: 100vh;
     overflow-x: hidden;
-    padding-bottom: 60px;
 }
 h1{
     font-size: 32px;

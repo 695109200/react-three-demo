@@ -38,8 +38,8 @@ function Home() {
           </Link>
 
           <Link to="/demo7" target='div' className="demoItem">
-              <img src="static/preview/demo6.png"></img>
-              <div>three里的环境光</div>
+              <img src="static/preview/demo7.png"></img>
+              <div>光源与阴影</div>
           </Link>
 
           <Link to="/demo8" target='div' className="demoItem">
