@@ -79,6 +79,7 @@ function Demo7() {
         document.getElementById('canvas-frame').appendChild(render.domElement);
         render.setPixelRatio(window.devicePixelRatio);  //设置渲染器设备像素比。通常用于避免HiDPI设备上绘图模糊
         render.setClearColor(0x000000, 1.0);    //设置渲染器的背景颜色及其透明度
+     
         render.shadowMap.enabled = true;
         initPlan()
         initCube()

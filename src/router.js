@@ -10,6 +10,7 @@ import Demo6 from './DemoPage/demo6'
 import Demo7 from './DemoPage/demo7'
 import Demo8 from './DemoPage/demo8'
 import Demo9 from './DemoPage/demo9'
+import Demo10 from './DemoPage/demo10'
 
 const RouterList = () => (
     <HashRouter>
@@ -24,6 +25,7 @@ const RouterList = () => (
         <Route exact path="/Demo7" component={Demo7}></Route>
         <Route exact path="/Demo8" component={Demo8}></Route>
         <Route exact path="/Demo9" component={Demo9}></Route>
+        <Route exact path="/Demo10" component={Demo10}></Route>
       </Switch>
     </HashRouter>
 );

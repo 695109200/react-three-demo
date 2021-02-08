@@ -55,6 +55,10 @@ function Home() {
               <img src="static/preview/demo10.png"></img>
               <div>天空盒子</div>
           </Link>
+          <Link to="/demo10" target='div' className="demoItem">
+              <img src="static/preview/demo10.png"></img>
+              <div>仿法拉第汽车场景</div>
+          </Link>
         </div>
     </div>
   );
