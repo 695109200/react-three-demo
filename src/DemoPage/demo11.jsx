@@ -114,6 +114,7 @@ function Demo9() {
   //每秒渲染
   function animation() {
     controls.update();
+    
     render.render(scene, camera); //每次渲染器把场景和摄像机一起渲染
     requestAnimationFrame(animation); //采用系统时间间隔,保持最佳绘制效率进行渲染
   }
