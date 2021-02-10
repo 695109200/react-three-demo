@@ -30,6 +30,7 @@ function Demo4() {
         intersects = raycaster.intersectObjects(scene.children,true);   //intersects = 射线经过的物体数组
 
         if (intersects.length > 0 && intersects[ 0 ].object.type !== 'GridHelper') {    //判断射线经过的物体数组的长度以及做筛选
+            console.log(intersects[ 0 ].object)
             intersects[ 0 ].object.material.color.set( 0xff0000 );                      //数组第一个就是获取到的对象
         }
     }

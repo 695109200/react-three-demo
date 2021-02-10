@@ -11,6 +11,7 @@ function Demo1() {
   const cube = new Three.Mesh(geometry, material);  //定义一个网格，这个网格由一个几何体和一个材质构成,也就是旋转着的正方体由这两个构成
 
   function add() {
+    console.log(cube)
     scene.add(cube);  //往场景添加正方体
     camera.position.z = 5;
   }

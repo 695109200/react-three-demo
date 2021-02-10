@@ -27,6 +27,7 @@ function Demo3() {
     function load(){
         //主要加载函数
         loader.load("Bee.glb", (object) => {
+            console.log(object)
             scene.add(object.scene);    //加载成功添加进场景
         });
     }

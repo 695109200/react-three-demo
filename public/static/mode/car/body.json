@@ -385,6 +385,24 @@
 			"geometry":"03F9D3D7-36F1-4885-B49C-B8DA5C3D83F5"
 		}]
 	},
+	"materials": [
+		{
+		  "uuid": "88DE57E6-134E-4916-9288-BCF9EB56E499",
+		  "type": "MeshBasicMaterial",
+		  "color": 13047173,
+		  "depthFunc": 3,
+		  "depthTest": true,
+		  "depthWrite": true,
+		  "stencilWrite": false,
+		  "stencilWriteMask": 255,
+		  "stencilFunc": 519,
+		  "stencilRef": 0,
+		  "stencilFuncMask": 255,
+		  "stencilFail": 7680,
+		  "stencilZFail": 7680,
+		  "stencilZPass": 7680
+		}
+	  ],
 	"metadata":{
 		"type":"Object",
 		"generator":"io_three",
