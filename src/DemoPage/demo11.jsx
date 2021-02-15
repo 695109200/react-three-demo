@@ -25,7 +25,17 @@ function Demo9() {
   const [render] = useState(new Three.WebGLRenderer({ antialias: true })); //渲染器
   const [controls] = useState(new Orbitcontrols(camera, render.domElement));
   const loader = new Three.ObjectLoader();
+  const shadowImg = new Three.TextureLoader().load('static/mode/car/shadow.jpg')
+  const shadowPlan = new Three.Mesh(new Three.PlaneGeometry(13,12,32),new Three.MeshBasicMaterial({map:shadowImg,transparent: true,blending: Three.MultiplyBlending,}))
+  
+  function loadShadow(){
+    shadowPlan.rotation.set(-1.55,0, 1.55);
+    shadowPlan.position.set(1.55,0, 4);
 
+    scene.add(shadowPlan)
+  }
+
+  //加载车身
   function loadBodyObj(){
     loader.load("static/mode/car/body.json", (object) => {
       object.scale.set(0.001, 0.001, 0.001);
@@ -35,12 +45,13 @@ function Demo9() {
       object.children[3].material.color.set(0xc0c0c0);
       object.children[4].material.color.set(0xc0c0c0);
       object.rotation.set(0, 1.55, 0);
-      object.position.set(1.5, 0, 4);
+      object.position.set(1.45, 0, 4);
 
       scene.add(object);
       console.log(scene)
     });
   }
+
   //加载轮胎JSON
   function loadTireObj() {
     loader.load("static/mode/car/wheel.json", (object) => {
@@ -129,7 +140,8 @@ function Demo9() {
     initSkyBox();
     initContors();
     loadTireObj();
-    loadBodyObj()
+    loadBodyObj();
+    loadShadow();
     animation();
   });
   return <div id="canvas-frame"></div>;
