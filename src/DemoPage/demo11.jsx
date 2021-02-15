@@ -2,7 +2,7 @@ import css from "../index.css";
 import * as Three from "three";
 import React, { useState, useEffect } from "react";
 import Orbitcontrols from "three-orbitcontrols";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
+import TWEEN from '@tweenjs/tween.js'
 
 // Mesh物体 = (几何体(Geometry) + 材质(material))
 // matrix(矩阵) materialLibraries(材质库) layers(层)
@@ -25,13 +25,32 @@ function Demo9() {
   const [render] = useState(new Three.WebGLRenderer({ antialias: true })); //渲染器
   const [controls] = useState(new Orbitcontrols(camera, render.domElement));
   const loader = new Three.ObjectLoader();
-  const shadowImg = new Three.TextureLoader().load('static/mode/car/shadow.jpg')
-  const shadowPlan = new Three.Mesh(new Three.PlaneGeometry(13,12,32),new Three.MeshBasicMaterial({map:shadowImg,transparent: true,blending: Three.MultiplyBlending,}))
+  const shadowPlan = new Three.Mesh(new Three.PlaneGeometry(13,12,32),new Three.MeshBasicMaterial({map:new Three.TextureLoader().load('static/mode/car/shadow.jpg'),transparent: true,blending: Three.MultiplyBlending}))
   
+  //轮胎旋转
+  function rotationWheel(){
+    console.log(scene.children[2])
+
+    //让group居中
+    scene.children[2].children[0].geometry.center()
+    scene.children[2].children[1].geometry.center()
+    scene.children[2].children[2].geometry.center()
+
+    var tween = new TWEEN.Tween(scene.children[2].rotation).to({x:-2}).repeat(Infinity).yoyo(false).start()
+    var tween1 = new TWEEN.Tween(scene.children[3].rotation).to({x:-2}).repeat(Infinity).yoyo(false).start()
+    var tween2 = new TWEEN.Tween(scene.children[4].rotation).to({x:-2}).repeat(Infinity).yoyo(false).start()
+    var tween3 = new TWEEN.Tween(scene.children[4].rotation).to({x:-2}).repeat(Infinity).yoyo(false).start()
+
+  }
+  //加载车贴图
+  function loadCarTexture(){
+    
+  }
+
+  //加载车底阴影
   function loadShadow(){
     shadowPlan.rotation.set(-1.55,0, 1.55);
     shadowPlan.position.set(1.55,0, 4);
-
     scene.add(shadowPlan)
   }
 
@@ -73,12 +92,13 @@ function Demo9() {
           tire_right_2 = object.children[1].clone();
 
 
-      tire_left_1.position.set(0.18, 1.65, -0.16);
-      tire_left_2.position.set(3.55, 1.55, -0.1);
-      tire_right_1.position.set(0, 1.65, 6.3);
-      tire_right_2.position.set(3.55, 1.65, 6.3);
+      tire_left_1.position.set(-0.15, 0.8, 0.7);
+      tire_left_2.position.set(3.2, 0.8, 0.7);
+      tire_right_1.position.set(-0.15, 0.8, 7.1);
+      tire_right_2.position.set(3.2, 0.8, 7.1);
 
       scene.add(tire_left_1,tire_left_2,tire_right_1,tire_right_2);
+      rotationWheel()
     });
   }
 
@@ -91,7 +111,7 @@ function Demo9() {
   }
 
   //初始化天空盒
-  function initSkyBox() {
+  function loadSkyBox() {
     var skyBox = new Three.Mesh(new Three.BoxBufferGeometry(300, 300, 300), [
       new Three.MeshBasicMaterial({
         map: new Three.TextureLoader().load("static/mode/car/xp.jpg"),
@@ -125,7 +145,8 @@ function Demo9() {
   //每秒渲染
   function animation() {
     controls.update();
-    
+    TWEEN.update();
+   
     render.render(scene, camera); //每次渲染器把场景和摄像机一起渲染
     requestAnimationFrame(animation); //采用系统时间间隔,保持最佳绘制效率进行渲染
   }
@@ -137,12 +158,16 @@ function Demo9() {
     document.getElementById("canvas-frame").appendChild(render.domElement);
     render.setPixelRatio(window.devicePixelRatio); //设置渲染器设备像素比。通常用于避免HiDPI设备上绘图模糊
     render.setClearColor(0xeeeeee, 1.0); //设置渲染器的背景颜色及其透明度
-    initSkyBox();
+    
+    loadSkyBox();
     initContors();
-    loadTireObj();
+   loadTireObj();
     loadBodyObj();
     loadShadow();
+    loadCarTexture();
+    // scene.children[2].rotation.x+=0.1
     animation();
+
   });
   return <div id="canvas-frame"></div>;
 }

@@ -18,7 +18,7 @@ function Demo1() {
 
   function animation() {
     cube.rotation.x += 0.01;            //每次渲染正方体的x轴+0.1
-    cube.rotation.y += 0.01;            //每次渲染正方体的y轴+0.1
+    // cube.rotation.y += 0.01;            //每次渲染正方体的y轴+0.1
     render.render(scene, camera);       //每次渲染器把场景和摄像机一起渲染
     requestAnimationFrame(animation);   //采用系统时间间隔,保持最佳绘制效率进行渲染
   }
